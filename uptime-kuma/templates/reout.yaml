@@ -1,0 +1,25 @@
+{{- if .Values.route.enabled -}}
+{{- $fullName := include "uptime-kuma.fullname" . -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "uptime-kuma.labels" . | nindent 4 }}
+  annotations:
+    {{- with .Values.route.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    link.argocd.argoproj.io/external-link: "https://{{ .Values.route.host }}"
+spec:
+  host: {{ .Values.route.host | quote }}
+  to:
+    kind: Service
+    name: {{ $fullName }}
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+{{- end }}

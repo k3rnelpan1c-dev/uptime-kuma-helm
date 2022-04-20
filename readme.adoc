@@ -1,0 +1,8 @@
+[[uptime-kuma-helm-chart]]
+= Uptime Kuma Helm Chart
+
+> This is more a PoC than anything so use this at your own risk
+
+Just a quick demonstration of a hacked together Helm 3 Chart to deploy link:https://github.com/louislam/uptime-kuma[uptime-kuma] on OpenShift, but also on Kubernetes.
+
+It will deploy a single Pod as part of a `StatefullSet`, you can configure persistence and optionally deploy a OpenShift *Route* or regular K8s *Ingress* alongside.
