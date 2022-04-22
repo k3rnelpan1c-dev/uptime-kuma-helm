@@ -1,0 +1,49 @@
+name: "🏗️ Container Build"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - container/**
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install qemu dependency
+        run: |-
+          sudo apt-get update
+          sudo apt-get install -y qemu-user-static
+
+      - name: Get Uptime-Kuma Version
+        run: |-
+          VERSION=`sed -nr "s;.*docker.io/louislam/uptime-kuma:(.*)-debian.*;\1;p" container/Containerfile`
+          echo "APP_VERSION=${VERSION}"
+          echo "APP_VERSION=${VERSION}" >> $GITHUB_ENV
+
+      - id: container
+        name: Build Container Image
+        uses: redhat-actions/buildah-build@v2.9
+        with:
+          image: uptime-kuma
+          tags: >-
+            latest
+            ${{ env.APP_VERSION }}
+          oci: true
+          platforms: linux/amd64, linux/arm64, linux/arm/v7
+          containerfiles: |-
+            container/Containerfile
+
+      - name: Push container image to quay.io
+        uses: redhat-actions/push-to-registry@v2.5
+        with:
+          image: ${{ steps.container.outputs.image }}
+          tags: ${{ steps.container.outputs.tags }}
+          registry: quay.io/k3rnel-pan1c
+          username: ${{ secrets.QUAY_USR }}
+          password: ${{ secrets.QUAY_PWD }}
