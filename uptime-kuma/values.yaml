@@ -4,7 +4,7 @@
 
 image:
   registry: ""
-  repository: louislam/uptime-kuma
+  repository: k3rnel-pan1c/uptime-kuma
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
