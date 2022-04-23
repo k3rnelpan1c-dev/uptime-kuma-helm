@@ -10,12 +10,20 @@
   "vulnerabilityAlerts": {
     "addLabels": ["security"]
   },
-  "labels": ["dependencies"],
+  "addLabels": ["dependencies"],
   "packageRules": [
     {
       "description": "Add the ci and github-actions GitHub label to GitHub Action bump PRs",
       "matchManagers": ["github-actions"],
-      "labels": ["ci", "github-actions"]
+      "addLabels": ["ci", "github-actions"],
+      "semanticCommitType": "build"
+    },
+    {
+      "description": "Disable major NodeJS upgrades",
+      "matchManagers": ["dockerfile"],
+      "matchPackageNames": ["node"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
     }
   ],
   "dockerfile": {
@@ -30,7 +38,7 @@
       "description": "Update _VERSION variables in Dockerfiles",
       "fileMatch": ["(^|/|\\.)Containerfile$", "(^|/)Containerfile\\.[^/]*$"],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)(?: lookupName=(?<lookupName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)(?: lookupName=(?<lookupName>.+?))?(?: versioning=(?<versioning>[a-z0-9-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
       ],
       "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
     },
