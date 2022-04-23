@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  registry: ""
+  registry: "quay.io"
   repository: k3rnel-pan1c/uptime-kuma
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
