@@ -3,7 +3,8 @@
   "extends": [
     "config:base",
     ":semanticCommits",
-    ":semanticCommitScope(deps)"
+    ":semanticCommitScope(deps)",
+    "docker:disableMajor"
   ],
   "dependencyDashboard": true,
   "rebaseWhen": "conflicted",
@@ -22,13 +23,6 @@
       "description": "Add the pypi GitHub label to Pypi bump PRs",
       "matchDatasources": ["pypi"],
       "addLabels": ["pypi"]
-    },
-    {
-      "description": "Disable major NodeJS upgrades",
-      "matchManagers": ["dockerfile"],
-      "excludePackagePatterns": [".*node"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
     }
   ],
   "dockerfile": {

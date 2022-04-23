@@ -1,8 +1,32 @@
 [[uptime-kuma-helm-chart]]
 = Uptime Kuma Helm Chart
 
+image:https://img.shields.io/badge/status-poc-9cf.svg?logo=dev.to[]
+link:https://github.com/k3rnelpan1c-dev/uptime-kuma-helm/actions/workflows/container-build.yaml[image:https://github.com/k3rnelpan1c-dev/uptime-kuma-helm/actions/workflows/container-build.yaml/badge.svg[🏗️ Container Build]]
+
 > This is more a PoC than anything so use this at your own risk
 
 Just a quick demonstration of a hacked together Helm 3 Chart to deploy link:https://github.com/louislam/uptime-kuma[uptime-kuma] on OpenShift, but also on Kubernetes.
 
 It will deploy a single Pod as part of a `StatefulSet`, you can configure persistence and optionally deploy a OpenShift *Route* or regular K8s *Ingress* alongside.
+
+
+== Custom Image
+
+I build a custom image with the intent to repackage _uptime-kuma_ in an Open Shift compatible way (i.e. to support and work properly with arbitrary UIDs).
+It is used within this chat and its sources can be fund under the `container` folder within this repo or here:
+
+[source,dockerfile]
+----
+include::container/Containerfile[]
+----
+
+I published a prebuilt version of this to link:https://quay.io/repository/k3rnel-pan1c/uptime-kuma?tab=info[Quay.io] and reference that within the Chart, feel free to use that or build it yourself :wink:.
+
+== Support
+
+IMPORTANT: Please note that this is plainly an *UNOFFICIAL* way to install _uptime-kuma_. So please do not expect to get help and or support in the official _uptime-kuma_ issues or other forms of help sections!
+
+This Helm Chart and the image where validated against Open Shift 4.x, yet they should work fine with regular Kubernetes.
+
+I will try to keep this Chart and container image updated and operational, yet keep in mind this is more a PoC than anything production ready/oriented.
