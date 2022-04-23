@@ -19,9 +19,14 @@
       "semanticCommitType": "build"
     },
     {
+      "description": "Add the pypi GitHub label to Pypi bump PRs",
+      "matchDatasources": ["pypi"],
+      "addLabels": ["pypi"]
+    },
+    {
       "description": "Disable major NodeJS upgrades",
       "matchManagers": ["dockerfile"],
-      "matchPackageNames": ["node"],
+      "excludePackagePatterns": [".*node"],
       "matchUpdateTypes": ["major"],
       "enabled": false
     }
