@@ -23,6 +23,13 @@
       "description": "Add the pypi GitHub label to Pypi bump PRs",
       "matchDatasources": ["pypi"],
       "addLabels": ["pypi"]
+    },
+    {
+      "description": "Set container dependencies to group",
+      "matchDatasources": ["docker"],
+      "groupName": "container dependencies",
+      "groupSlug": "container",
+      "semanticCommitType": "package"
     }
   ],
   "dockerfile": {
