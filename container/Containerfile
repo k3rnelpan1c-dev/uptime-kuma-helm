@@ -8,6 +8,9 @@ ARG GID=3310
 # renovate: datasource=pypi depName=apprise versioning=pep440
 ARG APPRISE_VERSION=0.9.8.2
 
+# renovate: datasource=github-releases depName=cloudflare/cloudflared
+ARG CLOUDFLARED_VERSION=2022.4.1
+
 COPY --from=app-donor /app /app
 
 RUN apt-get update -qqy \
@@ -26,7 +29,7 @@ RUN apt-get update -qqy \
       armhf) ARCH='arm';; \
       *) echo "unsupported architecture"; exit 1 ;; \
     esac \
-    && curl -fsSLo /usr/local/bin/cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-${ARCH} \
+    && curl -fsSLo /usr/local/bin/cloudflared https://github.com/cloudflare/cloudflared/releases/download/${CLOUDFLARED_VERSION}/cloudflared-linux-${ARCH} \
     && chmod +x /usr/local/bin/cloudflared \
     \
     # Setup non-root system account + group
@@ -35,6 +38,11 @@ RUN apt-get update -qqy \
     && mkdir -p /app/data \
     && chown -R uptime-kuma:0 /app \
     && chmod -R g=u /app
+    \
+    # Smoke Tests
+    && set -ex;
+      cloudflared version;
+      apprise --version;
 
 WORKDIR /app
 USER uptime-kuma
