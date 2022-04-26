@@ -37,11 +37,11 @@ RUN apt-get update -qqy \
     && adduser --system --disabled-login --ingroup uptime-kuma --no-create-home --home /nonexistent --gecos "uptime-kuma" --shell /bin/false --uid ${UID} uptime-kuma || true \
     && mkdir -p /app/data \
     && chown -R uptime-kuma:0 /app \
-    && chmod -R g=u /app
+    && chmod -R g=u /app \
     \
     # Smoke Tests
-    && set -ex;
-      cloudflared version;
+    && set -ex; \
+      cloudflared version; \
       apprise --version;
 
 WORKDIR /app
