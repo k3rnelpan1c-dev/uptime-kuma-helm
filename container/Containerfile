@@ -9,7 +9,7 @@ ARG GID=3310
 ARG APPRISE_VERSION=0.9.8.3
 
 # renovate: datasource=github-releases depName=cloudflare/cloudflared
-ARG CLOUDFLARED_VERSION=2022.4.1
+ARG CLOUDFLARED_VERSION=2022.5.0
 
 COPY --from=app-donor /app /app
 
