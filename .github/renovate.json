@@ -4,13 +4,12 @@
     "config:base",
     ":semanticCommits",
     ":semanticCommitScope(deps)",
-    "docker:disableMajor"
+    ":enableVulnerabilityAlertsWithLabel(security)",
+    "docker:disableMajor",
+    "docker:pinDigests"
   ],
   "dependencyDashboard": true,
   "rebaseWhen": "conflicted",
-  "vulnerabilityAlerts": {
-    "addLabels": ["security"]
-  },
   "addLabels": ["dependencies"],
   "packageRules": [
     {
@@ -37,7 +36,7 @@
       "(^|/|\\.)Containerfile$",
       "(^|/|\\.)Containerfile\\.[^/]*$"
     ],
-    "labels": ["oci"]
+    "addLabels": ["oci"]
   },
   "regexManagers": [
     {

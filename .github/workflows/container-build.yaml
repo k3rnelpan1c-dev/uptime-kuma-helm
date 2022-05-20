@@ -47,3 +47,12 @@ jobs:
           registry: quay.io/k3rnel-pan1c
           username: ${{ secrets.QUAY_USR }}
           password: ${{ secrets.QUAY_PWD }}
+
+      - name: Push container image to ghcr.io
+        uses: redhat-actions/push-to-registry@v2.5
+        with:
+          image: ${{ steps.container.outputs.image }}
+          tags: ${{ steps.container.outputs.tags }}
+          registry: ghcr.io/${{ github.repository_owner }}
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
