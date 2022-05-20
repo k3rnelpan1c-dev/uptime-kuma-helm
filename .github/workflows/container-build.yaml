@@ -1,6 +1,11 @@
 name: "🏗️ Container Build"
 
 on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - container/**
   push:
     branches:
       - main
@@ -40,6 +45,7 @@ jobs:
             container/Containerfile
 
       - name: Push container image to quay.io
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: redhat-actions/push-to-registry@v2.5
         with:
           image: ${{ steps.container.outputs.image }}
@@ -49,6 +55,7 @@ jobs:
           password: ${{ secrets.QUAY_PWD }}
 
       - name: Push container image to ghcr.io
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: redhat-actions/push-to-registry@v2.5
         with:
           image: ${{ steps.container.outputs.image }}
