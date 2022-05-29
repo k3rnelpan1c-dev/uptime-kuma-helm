@@ -23,6 +23,8 @@ include::./container/Containerfile[]
 
 I published a prebuilt version of this to link:https://quay.io/repository/k3rnel-pan1c/uptime-kuma?tab=info[Quay.io] and reference that within the Chart, feel free to use that or build it yourself :wink:.
 
+Alternatively, the image is now also pushed to link:https://github.com/k3rnelpan1c-dev/uptime-kuma-helm/pkgs/container/uptime-kuma[ghcr.io] (GitHub Container registry) so there is a backup mirror when you run into issues with Quay.
+
 == Support
 
 IMPORTANT: Please note that this is plainly an *UNOFFICIAL* way to install _uptime-kuma_. So please do not expect to get help and or support in the official _uptime-kuma_ issues or other forms of help sections!
