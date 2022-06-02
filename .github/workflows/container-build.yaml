@@ -46,7 +46,7 @@ jobs:
 
       - name: Push container image to quay.io
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        uses: redhat-actions/push-to-registry@v2.5
+        uses: redhat-actions/push-to-registry@v2.6
         with:
           image: ${{ steps.container.outputs.image }}
           tags: ${{ steps.container.outputs.tags }}
@@ -56,7 +56,7 @@ jobs:
 
       - name: Push container image to ghcr.io
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        uses: redhat-actions/push-to-registry@v2.5
+        uses: redhat-actions/push-to-registry@v2.6
         with:
           image: ${{ steps.container.outputs.image }}
           tags: ${{ steps.container.outputs.tags }}
