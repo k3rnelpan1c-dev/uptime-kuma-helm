@@ -6,7 +6,8 @@
     ":semanticCommitScope(deps)",
     ":enableVulnerabilityAlertsWithLabel(security)",
     "docker:disableMajor",
-    "docker:pinDigests"
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests"
   ],
   "dependencyDashboard": true,
   "rebaseWhen": "conflicted",
@@ -29,6 +30,16 @@
       "groupName": "container dependencies",
       "groupSlug": "container",
       "semanticCommitType": "package"
+    },
+    {
+      "description": "Group GitHub Action bumps to one PR as long as they have no major jump",
+      "matchManagers": ["github-actions"],
+      "groupName": "CI dependencies",
+      "groupSlug": "ci-dependencies",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
     }
   ],
   "dockerfile": {
