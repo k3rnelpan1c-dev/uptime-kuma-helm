@@ -12,7 +12,7 @@ spec:
     requests:
       storage: {{ .Values.persistence.sizeLimit | quote }}
 {{- if .Values.persistence.storageClass }}
-  storageClassName: "{{ .Values.persistence.storageClass }}"
+  storageClassName: {{ .Values.persistence.storageClass | quote }}
 {{- end }}
 
 {{- end }}

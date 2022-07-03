@@ -4,9 +4,9 @@
 
 image:
   registry: "quay.io"
-  repository: k3rnel-pan1c/uptime-kuma
+  repository: "k3rnel-pan1c/uptime-kuma"
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # Overrides the image tag whose default is the Chart's appVersion.
   tag: ""
 
 imagePullSecrets: []
@@ -41,7 +41,7 @@ service:
 
 route:
   enabled: false
-  annotations: { }
+  annotations: {}
   host: ""
 
 ingress:
@@ -66,8 +66,8 @@ resources: {}
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
+  #   cpu: 200m
+  #   memory: 256Mi
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
@@ -75,7 +75,7 @@ resources: {}
 persistence:
   enabled: false
   claimNameOverwrite: ""
-  sizeLimit: 8Gi
+  sizeLimit: 4Gi
   storageClass: ""
 
 nodeSelector: {}
