@@ -1,4 +1,4 @@
-{{- if .Values.ingress.enabled -}}
+{{- if and .Values.ingress.enabled (not .Values.route.enabled) -}}
 {{- $fullName := include "uptime-kuma.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
@@ -7,7 +7,6 @@
   {{- end }}
 {{- end }}
 apiVersion: networking.k8s.io/v1
-apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}

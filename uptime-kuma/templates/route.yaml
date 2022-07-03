@@ -1,4 +1,4 @@
-{{- if .Values.route.enabled -}}
+{{- if and .Values.route.enabled (not .Values.ingress.enabled) -}}
 {{- $fullName := include "uptime-kuma.fullname" . -}}
 apiVersion: route.openshift.io/v1
 kind: Route
