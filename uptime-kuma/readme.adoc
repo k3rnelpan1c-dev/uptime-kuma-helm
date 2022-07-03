@@ -1,0 +1,212 @@
+[[uptime-kuma-chart]]
+= Uptime-Kuma Chart
+:toc:
+
+== Values
+
+Here you will find a list of all the values suppoerted by this Helm Chart.
+
+=== Image
+
+|===
+|Value |Default |Description
+
+|`image.registry`
+|`"quay.io"`
+|The container image registry to use and query for the image tag to pull.
+
+|`image.repository`
+|`"k3rnel-pan1c/uptime-kuma"`
+|The full name of the uptime-kuma image within the selected registry.
+
+|`image.pullPolicy`
+|`IfNotPresent`
+|The imagePullPolicy for a container and the tag of the image affect when the kubelet attempts to pull (download) the specified image.
+
+|`image.tag`
+|`""`
+|Overrides the image tag whose default is the Chart's `appVersion`.
+
+|`imagePullSecrets`
+|`[]`
+|List of ImagePullSecrets to use for pulling the container images from the image registry.
+|===
+
+=== Persistence
+
+CAUTION: By default, this Chart deploys Uptime-Kuma only with an `EmptyDir` mount for its configuration and metric storage. If you want to persist your configuration and metrics you *must* enable persistence.
+
+|===
+|Value |Default |Description
+
+|`persistence.enabled`
+|`false`
+|Specifies whether a PVC should get created for this Chart's deployment.
+
+|`persistence.sizeLimit`
+|`4Gi`
+|The size to request for the PVC.
+
+|`persistence.storageClass`
+|`""`
+|Specify the `StorageClass` that the PVC should use to request the PV.
+
+|`persistence.claimNameOverwrite`
+|`""`
+|Optional value to overwrite the PVC name, otherwise defaults to `fullname`.
+|===
+
+=== Service Account
+
+NOTE: If you opt to not create one nor specify a name in `serviceAccount.name` the `default` service account will be used by the _Uptime-Kuma_ pod.
+
+|===
+|Value |Default |Description
+
+|`serviceAccount.create`
+|`true`
+|Specifies whether a service account should be created.
+
+|`serviceAccount.annotations`
+|`{}`
+|Annotations to be added to the service account.
+
+|`serviceAccount.name`
+|`""`
+|The name of the service account to use.
+If not set and create is true, a name is generated using the fullname template
+|===
+
+=== Route
+
+IMPORTANT: These values only apply and work on OKD or OpenShift or Clusters with the `route.openshift.io/v1` CRD.
+
+|===
+|Value |Default |Description
+
+|`route.enabled`
+|`false`
+|Specifies whether a OpenShift Rout should be created.
+
+|`route.annotations`
+|`{}`
+|Annotations to add to the OpenShift Rout.
+
+|`route.host`
+|`""`
+|The host to use for the OpenShift Rout.
+|===
+
+=== Ingress
+
+NOTE: Rout and Ingress are mutual exclusive to another, so be sure *not* to enable both!
+
+|===
+|Value |Default |Description
+
+|`ingress.enabled`
+|`false`
+|Specifies whether a Ingress should be created.
+
+|`ingress.className`
+|`""`
+|Name of the Ingress controller class to use.
+
+|`ingress.annotations`
+|`{}`
+|Annotations to add to the Ingress.
+
+|`ingress.hosts`
+|`[<sample-host-values>]`
+|The Ingress hosts array, the default value has been kept from the original `helm init`.
+
+|`ingress.tls`
+|`[]`
+|This value allows you to specify the TLS Certificate containing secret name and matching hosts.
+|===
+
+=== Resources
+
+NOTE: The resources of this Char are not enabled by default but the values displayed below as default have proven to be sufficient and working.
+
+|===
+|Value |Default |Description
+
+|`resources.limits.cpu`
+|`200m`
+|The limit to what the Pods of this deployment may consume of CPU, if the resources allow.
+
+|`resources.limits.memory`
+|`256Mi`
+|The limit to what the Pods of this deployment may consume of MEMORY, if the resources allow.
+
+|`resources.requests.cpu`
+|`100m`
+|The CPU resources the Pods of this deployment are guaranteed to have available.
+
+|`resources.requests.memory`
+|`128Mi`
+|The MEMORY resources the Pods of this deployment are guaranteed to have available.
+|===
+
+=== Pod
+
+|===
+|Value |Default |Description
+
+|`podAnnotations`
+|`{}`
+|Allows you to specify additional K8s annotations for the deployed Pod(s).
+
+|`podSecurityContext`
+|`{}`
+|Allows you to pass `SecurityContext` configs to the Pod.
+
+|`securityContext`
+|`{}`
+|Allows you to pass `SecurityContext` configs to the Container within the Pod.
+
+|`nodeSelector`
+|`{}`
+|Allows you to configure a `NodeSelector` for the Pod.
+
+|`tolerations`
+|`[]`
+|Allows you to configure `Tolerations` so the Pod may only be scheduled for nodes with or without certain taints.
+
+|`affinity`
+|`{}`
+|Allows you to configure `NodeAffinity` on the Pod, so only Nodes fulfilling certain criteria are considered for scheduling.
+|===
+
+=== Service
+
+CAUTION: Be sure you know what you are doing before making changes here.
+
+|===
+|Value |Default |Description
+
+|`service.type`
+|`ClusterIP`
+|The K8s Service type (possible values: `ClusterIP`, `NodePort`, `LoadBalancer`).
+
+|`service.port`
+|`80`
+|The Port the service exposes with the named `http`.
+|===
+
+
+=== General
+
+|===
+|Value |Default |Description
+
+|`fullnameOverride`
+|`""`
+|Allows you to overwrite the fullName property to a predefined value.
+
+|`nameOverride`
+|`""`
+|Allows you to overwrite the name property to a predefined value.
+|===
+
