@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "image": {
+      "type": "object",
+      "properties": {
+        "registry": {
+          "type": "string",
+          "default": "quay.io",
+          "description": "The container image registry to use and query for the image tag to pull."
+        },
+        "repository": {
+          "type": "string",
+          "default": "k3rnel-pan1c/uptime-kuma",
+          "description": "The full name of the uptime-kuma image within the selected registry."
+        },
+        "pullPolicy": {
+          "type": "string",
+          "enum": [
+            "IfNotPresent",
+            "Always",
+            "Never"
+          ],
+          "default": "IfNotPresent",
+          "description": "The imagePullPolicy for a container and the tag of the image affect when the kubelet attempts to pull (download) the specified image."
+        },
+        "tag": {
+          "type": "string",
+          "default": "",
+          "description": "Overrides the image tag whose default is the Chart's appVersion."
+        }
+      },
+      "required": [
+        "registry",
+        "repository",
+        "pullPolicy"
+      ]
+    },
+    "serviceAccount": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "default": true,
+          "description": "Specifies whether a service account should be created."
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Annotations to add to the service account."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the service account to use.\nIf not set and create is true, a name is generated using the fullname template"
+        }
+      }
+    },
+    "route": {
+      "type": "object",
+      "description": "Only supported/available on OKD/OpenShift and conflicts with the Ingress values.",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Specifies whether a OpenShift Rout should be created."
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Annotations to add to the OpenShift Rout."
+        },
+        "host": {
+          "type": "string",
+          "description": "The host to use for the OpenShift Rout.",
+          "pattern": "^((([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\\-]*[A-Za-z0-9]))?$"
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Specifies whether a Ingress should be created."
+        },
+        "className": {
+          "type": "string",
+          "description": "Name of the Ingress controller class to use."
+        },
+        "annotations": {
+          "type": "object",
+          "description": "Annotations to add to the Ingress."
+        },
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "tls": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "limits": {
+          "type": "object",
+          "$ref": "#/definitions/resourceComponents"
+        },
+        "requests": {
+          "type": "object",
+          "$ref": "#/definitions/resourceComponents"
+        }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Specifies whether a PVC should get created for this Chart's deployment.\nIf you opt not to enable persistence all data will end up in an EmptyDir mount and thereby be temporary."
+        },
+        "storageClass": {
+          "type": "string"
+        },
+        "sizeLimit": {
+          "type": "string",
+          "pattern": "^[1-9]\\d*(M|Mi|G|Gi)$"
+        },
+        "claimNameOverwrite": {
+          "type": "string"
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ClusterIP",
+            "NodePort",
+            "LoadBalancer"
+          ],
+          "default": "ClusterIP"
+        },
+        "port": {
+          "type": "integer",
+          "default": 80
+        }
+      }
+    },
+    "imagePullSecrets": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "nameOverride": {
+      "type": "string"
+    },
+    "fullnameOverride": {
+      "type": "string"
+    },
+    "podAnnotations": {
+      "type": "object"
+    },
+    "podSecurityContext": {
+      "type": "object"
+    },
+    "securityContext": {
+      "type": "object"
+    },
+    "nodeSelector": {
+      "type": "object"
+    },
+    "tolerations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "affinity": {
+      "type": "object"
+    }
+  },
+  "definitions": {
+    "resourceComponents":{
+      "type": "object",
+      "properties": {
+        "cpu": {
+          "type": ["number", "string"],
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d*m$"
+            },
+            {
+              "type": "number",
+              "exclusiveMinimum": 0.0
+            }
+          ]
+        },
+        "memory": {
+          "type": "string",
+          "pattern": "^[1-9]\\d*(M|Mi|G|Gi)$"
+        }
+      }
+    }
+  }
+}
