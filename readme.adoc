@@ -1,7 +1,7 @@
 [[uptime-kuma-helm-chart]]
 = Uptime Kuma Helm Chart
 
-image:https://github.com/k3rnelpan1c-dev/uptime-kuma-helm/actions/workflows/container-build.yaml/badge.svg[🏗️ Container Build, link="https://github.com/k3rnelpan1c-dev/uptime-kuma-helm/actions/workflows/container-build.yaml"]
+image:https://github.com/k3rnelpan1c-dev/uptime-kuma-helm/actions/workflows/container-build.yaml/badge.svg[🏗️ Container Image Build, link="https://github.com/k3rnelpan1c-dev/uptime-kuma-helm/actions/workflows/container-build.yaml"]
 image:https://img.shields.io/maintenance/yes/2025[Maintenance]
 image:https://img.shields.io/github/license/k3rnelpan1c-dev/uptime-kuma-helm[GitHub]
 
