@@ -12,6 +12,12 @@ on:
     paths:
       - container/**
   workflow_dispatch:
+    inputs:
+      publish:
+        type: boolean
+        default: false
+        required: true
+        description: "Push the image after the build?"
 
 permissions:
   contents: read
@@ -53,7 +59,7 @@ jobs:
             container/Containerfile
 
       - name: Push container image to quay.io
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        if: ${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish)) && github.ref == 'refs/heads/main' }}
         uses: redhat-actions/push-to-registry@df878026e36864aa6bf9a5b7afe63637cb88ef8c # tag=v2.6
         with:
           image: ${{ steps.container.outputs.image }}
@@ -63,7 +69,7 @@ jobs:
           password: ${{ secrets.QUAY_PWD }}
 
       - name: Push container image to ghcr.io
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        if: ${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish)) && github.ref == 'refs/heads/main' }}
         uses: redhat-actions/push-to-registry@df878026e36864aa6bf9a5b7afe63637cb88ef8c # tag=v2.6
         with:
           image: ${{ steps.container.outputs.image }}
