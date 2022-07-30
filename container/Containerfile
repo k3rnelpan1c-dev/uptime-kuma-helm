@@ -40,7 +40,7 @@ RUN apt-get update -qqy \
     && chmod -R g=u /app \
     \
     # Smoke Tests
-    && set -ex; \
+    && set -ex || exit $?; \
       cloudflared version; \
       apprise --version;
 
