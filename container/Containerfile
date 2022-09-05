@@ -1,4 +1,4 @@
-FROM docker.io/louislam/uptime-kuma:1.17.1-debian@sha256:a4eab252e5a27ead9e92f04d755d6cc968be923b277aae42ac8cf633e2da3b15 AS app-donor
+FROM docker.io/louislam/uptime-kuma:1.18.0-debian@sha256:f9ef2fbca62bb0adbac2a023137f424d927ab0e2ee884882ae287af629fc329f AS app-donor
 
 FROM docker.io/node:16.17.0-bullseye-slim@sha256:18ae6567b623f8c1caada3fefcc8746f8e84ad5c832abd909e129f6b13df25b4
 
