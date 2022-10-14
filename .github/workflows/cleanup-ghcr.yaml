@@ -6,13 +6,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  packages: write
+  contents: read
 
 jobs:
   cleanupGhcr:
     runs-on: ubuntu-22.04
     steps:
-      - name: Delete containers older than a week
+      - name: Delete old unused container images
         uses: snok/container-retention-policy@v1.5.1
         id: retention
         with:
@@ -23,7 +23,7 @@ jobs:
           keep-at-least: 8
           untagged-only: false
           skip-tags: latest
-          token: ${{ github.token }}
+          token: ${{ secrets.GHCR_CLEANUP_PAT }}
 
       - name: Print Output
         run: |-
