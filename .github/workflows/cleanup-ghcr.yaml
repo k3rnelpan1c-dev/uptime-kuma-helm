@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Delete old unused container images
-        uses: snok/container-retention-policy@v1.5.1
+        uses: snok/container-retention-policy@6601a342b42bf08909bbd5b48736d4176100365b # tag=v1.5.1
         id: retention
         with:
           image-names: uptime-kuma
