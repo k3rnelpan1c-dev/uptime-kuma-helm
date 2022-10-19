@@ -1,0 +1,31 @@
+name: "♻️ Cleanup GHCR"
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # At 00:00 on Sunday.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cleanupGhcr:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Delete old unused container images
+        uses: snok/container-retention-policy@6601a342b42bf08909bbd5b48736d4176100365b # tag=v1.5.1
+        id: retention
+        with:
+          image-names: uptime-kuma
+          cut-off: A week ago UTC
+          timestamp-to-use: updated_at
+          account-type: personal
+          keep-at-least: 8
+          untagged-only: false
+          skip-tags: latest
+          token: ${{ secrets.GHCR_CLEANUP_PAT }}
+
+      - name: Print Output
+        run: |-
+          echo "Failed cleanup for = ${{ steps.retention.outputs.failed }}"
+          echo "Needs manual cleanup = ${{ steps.retention.outputs.needs-github-assistance }}"
