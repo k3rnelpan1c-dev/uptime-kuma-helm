@@ -93,6 +93,4 @@ affinity: {}
 
 testPod:
   image: docker.io/busybox
-  annotations:
-    kapp.k14s.io/change-rule: upsert after upserting uptime-kuma.app/start
-    kapp.k14s.io/update-strategy: always-replace
+  annotations: {}
