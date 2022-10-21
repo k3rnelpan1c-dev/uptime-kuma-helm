@@ -14,8 +14,8 @@ nameOverride: ""
 fullnameOverride: ""
 
 statefulset:
-  annotations:
-    kapp.k14s.io/change-group: uptime-kuma.app/start
+  labels: {}
+  annotations: {}
 
 serviceAccount:
   # Specifies whether a service account should be created
