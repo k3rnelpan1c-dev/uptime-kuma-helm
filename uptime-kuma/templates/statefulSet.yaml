@@ -4,6 +4,9 @@ metadata:
   name: {{ include "uptime-kuma.fullname" . }}
   labels:
     {{- include "uptime-kuma.labels" . | nindent 4 }}
+    {{- with .Values.statefulset.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   annotations:
     {{- with .Values.statefulset.annotations }}
     {{- toYaml . | nindent 4 }}
