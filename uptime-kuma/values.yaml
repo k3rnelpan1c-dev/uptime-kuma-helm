@@ -13,6 +13,10 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+statefulSet:
+  labels: {}
+  annotations: {}
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -43,6 +47,7 @@ route:
   enabled: false
   annotations: {}
   host: ""
+  labels: {}
 
 ingress:
   enabled: false
@@ -77,9 +82,15 @@ persistence:
   claimNameOverwrite: ""
   sizeLimit: 4Gi
   storageClass: ""
+  annotations: {}
+  labels: {}
 
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
+
+testPod:
+  image: docker.io/busybox
+  annotations: {}

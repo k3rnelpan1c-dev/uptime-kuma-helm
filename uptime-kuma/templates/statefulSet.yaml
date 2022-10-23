@@ -4,6 +4,13 @@ metadata:
   name: {{ include "uptime-kuma.fullname" . }}
   labels:
     {{- include "uptime-kuma.labels" . | nindent 4 }}
+    {{- with .Values.statefulSet.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  annotations:
+    {{- with .Values.statefulSet.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   replicas: 1
   serviceName: {{ template "uptime-kuma.fullname" . }}
@@ -32,6 +39,11 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ include "uptime-kuma.containerImage" . }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: UPTIME_KUMA_PORT
+              value: '3001'
+            - name: PORT
+              value: '3001'
           ports:
             - name: http
               containerPort: 3001

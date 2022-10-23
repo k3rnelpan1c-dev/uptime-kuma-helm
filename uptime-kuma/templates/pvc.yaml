@@ -3,8 +3,15 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ include "uptime-kuma.persistentVolumeClaimName" . }}
+  annotations:
+    {{- with .Values.persistence.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   labels:
     {{- include "uptime-kuma.labels" . | nindent 4 }}
+    {{- with .Values.persistence.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   accessModes:
     - ReadWriteOnce

@@ -6,10 +6,14 @@ metadata:
     {{- include "uptime-kuma.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
+    {{- with .Values.testPod.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   containers:
     - name: wget
-      image: {{ .Values.image.registry | default "docker.io" }}/busybox
-      command: ['wget']
+      image: {{ .Values.testPod.image }}
+      command: ["/bin/sh"]
       args: ['{{ include "uptime-kuma.fullname" . }}:{{ .Values.service.port }}']
+      args: ["-c", "cd tmp/ ; wget '{{ include "uptime-kuma.fullname" . }}:{{ .Values.service.port }}'"]
   restartPolicy: Never
