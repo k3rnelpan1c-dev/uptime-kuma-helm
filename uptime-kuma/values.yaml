@@ -39,6 +39,18 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+livenessProbe:
+  exec:
+    command:
+      - node
+      - extra/healthcheck.js
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+    scheme: HTTP
+
 service:
   type: ClusterIP
   port: 80

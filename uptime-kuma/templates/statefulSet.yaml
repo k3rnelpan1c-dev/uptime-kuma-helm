@@ -52,15 +52,9 @@ spec:
             - name: uptime-storage
               mountPath: /app/data
           livenessProbe:
-            exec:
-              command:
-                - node
-                - extra/healthcheck.js
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
-              scheme: HTTP
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
