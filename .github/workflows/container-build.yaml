@@ -47,7 +47,7 @@ jobs:
 
       - id: container
         name: Build Container Image
-        uses: redhat-actions/buildah-build@d097e2e3d2a45b68a7c09040e3de33427bab66af # tag=v2.10
+        uses: redhat-actions/buildah-build@3e3409a0324de94ae9e740122c436c7967f474e2 # v2.11
         with:
           image: uptime-kuma
           tags: >-
@@ -60,7 +60,7 @@ jobs:
 
       - name: Push container image to quay.io
         if: ${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish)) && github.ref == 'refs/heads/main' }}
-        uses: redhat-actions/push-to-registry@df878026e36864aa6bf9a5b7afe63637cb88ef8c # tag=v2.6
+        uses: redhat-actions/push-to-registry@9e8327fcde18a44143eda2e7dfe68eca01aeeeea # v2.7
         with:
           image: ${{ steps.container.outputs.image }}
           tags: ${{ steps.container.outputs.tags }}
@@ -70,7 +70,7 @@ jobs:
 
       - name: Push container image to ghcr.io
         if: ${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish)) && github.ref == 'refs/heads/main' }}
-        uses: redhat-actions/push-to-registry@df878026e36864aa6bf9a5b7afe63637cb88ef8c # tag=v2.6
+        uses: redhat-actions/push-to-registry@9e8327fcde18a44143eda2e7dfe68eca01aeeeea # v2.7
         with:
           image: ${{ steps.container.outputs.image }}
           tags: ${{ steps.container.outputs.tags }}
