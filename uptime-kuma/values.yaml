@@ -42,8 +42,7 @@ securityContext: {}
 livenessProbe:
   exec:
     command:
-      - node
-      - extra/healthcheck.js
+      - extra/healthcheck
 
 readinessProbe:
   httpGet:
