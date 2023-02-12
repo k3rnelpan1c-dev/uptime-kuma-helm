@@ -47,7 +47,7 @@ jobs:
 
       - id: container
         name: Build Container Image
-        uses: redhat-actions/buildah-build@3e3409a0324de94ae9e740122c436c7967f474e2 # v2.11
+        uses: redhat-actions/buildah-build@b4dc19b4ba891854660ab1f88a097d45aa158f76 # v2.12
         with:
           image: uptime-kuma
           tags: >-
