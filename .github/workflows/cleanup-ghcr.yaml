@@ -20,8 +20,7 @@ jobs:
           cut-off: A week ago UTC
           timestamp-to-use: updated_at
           account-type: personal
-          keep-at-least: 8
-          untagged-only: false
+          keep-at-least: 4
           skip-tags: latest
           token: ${{ secrets.GHCR_CLEANUP_PAT }}
 
