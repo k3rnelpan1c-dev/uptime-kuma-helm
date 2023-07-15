@@ -40,6 +40,13 @@
         "minor",
         "patch"
       ]
+    },
+    {
+      "description": "Disable major bump PRs for the 'node' dependencies",
+      "matchPackageNames": [
+        "node"
+      ],
+      "major": false
     }
   ],
   "dockerfile": {
