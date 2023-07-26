@@ -63,6 +63,13 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
+Create the name of the service monitor to use
+*/}}
+{{- define "uptime-kuma.serviceMonitorNamespace" -}}
+{{- default (include "uptime-kuma.fullname" .) .Values.namespace }}
+{{- end }}
+
+{{/*
 Create the name of the PVC to use
 */}}
 {{- define "uptime-kuma.persistentVolumeClaimName" -}}

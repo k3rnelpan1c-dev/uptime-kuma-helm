@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "uptime-kuma.fullname" . }}
+spec:
+  endpoints:
+  - interval: 30s
+    path: /metrics
+    port: http
+    basicAuth:
+      password:
+        name: uptime-kuma-credentials
+        key: password
+      username:
+        name: uptime-kuma-credentials
+        key: username
+  namespaceSelector: # Scrape metrics from...
+    matchNames:
+    - {{ include "uptime-kuma.serviceMonitorNamespace" . }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "uptime-kuma.fullname" . }}

@@ -195,6 +195,17 @@ CAUTION: Be sure you know what you are doing before making changes here.
 |The Port the service exposes with the named `http`.
 |===
 
+=== ServiceMonitor
+
+CAUTION: You need to deploy the chart first and create a token in the uptime-kuma interface before this works!
+
+|===
+|Value |Default |Description
+
+|`serviceMonitor.enabled`
+|`false`
+|Specifies whether a ServiceMonitor should get created for this Chart's deployment.
+
 
 === General
 

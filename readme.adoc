@@ -9,6 +9,23 @@ This repo contains the automation to repackage link:https://github.com/louislam/
 
 The Helm Chart will deploy a single Pod as part of a `StatefulSet`, you can configure persistence and optionally deploy a OpenShift `Route` or regular K8s `Ingress` alongside.
 
+== Service Monitor
+
+To use the ServiceMonitor you can enable it by adding `serviceMonitor.enabled=true` to your values.yaml
+
+=== Usage
+
+To use this you will have to startup uptime-kuma, go to Settings -> API Keys -> Create a key and copy the token.
+Than add a secret to your namespace that looks like the source file below.
+Make you you fill in the username and the password.
+The username should be the username you use to login.
+The password should be the token you just generated.
+If you do not use Authentication in Kuma you can skip this part.
+[source,yaml]
+---
+include::./uptime-kuma/templates/secret.yaml
+---
+
 == Custom Image
 
 The custom image within this repo is built with the intent to repackage _uptime-kuma_ in an OpenShift compatible way (i.e. to support and work properly with arbitrary UIDs), therefor the image is also a non-root image.
