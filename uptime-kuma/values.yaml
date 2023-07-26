@@ -13,6 +13,8 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+commonlabels: {}
+
 statefulSet:
   labels: {}
   annotations: {}

@@ -210,3 +210,8 @@ CAUTION: Be sure you know what you are doing before making changes here.
 |Allows you to overwrite the name property to a predefined value.
 |===
 
+|`commonLabels`
+|`""`
+|Allows you to add labels that you want on every resource.
+|===
+

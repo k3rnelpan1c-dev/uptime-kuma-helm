@@ -6,6 +6,9 @@ metadata:
     {{- include "uptime-kuma.labels" . | nindent 4 }}
     {{- with .Values.statefulSet.labels }}
     {{- toYaml . | nindent 4 }}
+    {{- end }}  
+    {{- with .Values.commonLabels }}
+    {{- toYaml . | nindent 4 }}
     {{- end }}
   annotations:
     {{- with .Values.statefulSet.annotations }}
@@ -17,6 +20,9 @@ spec:
   selector:
     matchLabels:
       {{- include "uptime-kuma.selectorLabels" . | nindent 6 }}
+      {{- with .Values.commonLabels }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -25,6 +31,9 @@ spec:
       {{- end }}
       labels:
         {{- include "uptime-kuma.selectorLabels" . | nindent 8 }}
+        {{- with .Values.commonLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
