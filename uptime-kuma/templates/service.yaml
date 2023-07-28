@@ -4,6 +4,12 @@ metadata:
   name: {{ include "uptime-kuma.fullname" . }}
   labels:
     {{- include "uptime-kuma.labels" . | nindent 4 }}
+    {{- with .Values.service.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    {{- with .Values.commonLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
