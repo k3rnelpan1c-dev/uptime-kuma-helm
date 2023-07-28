@@ -4,7 +4,6 @@ metadata:
   name: {{ include "uptime-kuma.fullname" . }}  
   labels:
     {{- include "uptime-kuma.labels" . | nindent 4 }}
-    {{- with .Values.commonLabels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
