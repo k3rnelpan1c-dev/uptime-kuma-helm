@@ -1,7 +1,12 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "uptime-kuma.fullname" . }}
+  name: {{ include "uptime-kuma.fullname" . }}  
+  labels:
+    {{- include "uptime-kuma.labels" . | nindent 4 }}
+    {{- with .Values.commonLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   endpoints:
   - interval: 30s
