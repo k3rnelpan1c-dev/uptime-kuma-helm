@@ -56,6 +56,11 @@ CAUTION: By default, this Chart deploys Uptime-Kuma only with an `EmptyDir` moun
 |Optional value to overwrite the PVC name, otherwise defaults to `fullname`.
 |===
 
+|`persistence.labels`
+|`{}`
+|Allows you to add labels that you want to the PVC resource.
+|===
+
 === Service Account
 
 NOTE: If you opt to not create one nor specify a name in `serviceAccount.name` the `default` service account will be used by the _Uptime-Kuma_ pod.
@@ -88,6 +93,11 @@ IMPORTANT: These values only apply and work on OKD or OpenShift or Clusters with
 |`false`
 |Specifies whether a OpenShift Rout should be created.
 
+|`route.labels`
+|`{}`
+|Allows you to add labels that you want to the route resource.
+|===
+
 |`route.annotations`
 |`{}`
 |Annotations to add to the OpenShift Rout.
@@ -116,14 +126,14 @@ NOTE: Rout and Ingress are mutual exclusive to another, so be sure *not* to enab
 |`{}`
 |Annotations to add to the Ingress.
 
-|`ingress.hosts`
-|`[<sample-host-values>]`
-|The Ingress hosts array, the default value has been kept from the original `helm init`.
-
 |`ingress.tls`
 |`[]`
 |This value allows you to specify the TLS Certificate containing secret name and matching hosts.
 |===
+
+|`ingress.hosts`
+|`[<sample-host-values>]`
+|The Ingress hosts array, the default value has been kept from the original `helm init`.
 
 === Resources
 
@@ -195,6 +205,26 @@ CAUTION: Be sure you know what you are doing before making changes here.
 |The Port the service exposes with the named `http`.
 |===
 
+|`service.labels`
+|`{}`
+|Allows you to add labels that you want to the service resource.
+|===
+
+=== Statefulset
+
+|===
+|Value |Default |Description
+
+|`statefulSet.annotations`
+|`{}`
+|Allows you to add annotations that you want to the statefulSet resource.
+|===
+
+|`statefulSet.labels`
+|`{}`
+|Allows you to add labels that you want to the statefulSet resource.
+|===
+
 === ServiceMonitor
 
 CAUTION: You need to deploy the chart first and create a token in the uptime-kuma interface before this works!
@@ -222,7 +252,7 @@ CAUTION: You need to deploy the chart first and create a token in the uptime-kum
 |===
 
 |`commonLabels`
-|`""`
+|`{}`
 |Allows you to add labels that you want on every resource.
 |===
 
