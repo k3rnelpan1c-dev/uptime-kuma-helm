@@ -1,12 +1,9 @@
-{{- if and .Values.serviceMonitor.enabled -}}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ include "uptime-kuma.fullname" . }}  
   labels:
-    {{- include "uptime-kuma.labels" . | nindent 4 }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
+    {{ include "uptime-kuma.labels" . | nindent 4 }}
 spec:
   endpoints:
   - interval: 30s
@@ -25,4 +22,3 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "uptime-kuma.fullname" . }}
-{{- end }}
