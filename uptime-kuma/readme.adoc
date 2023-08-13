@@ -54,6 +54,10 @@ CAUTION: By default, this Chart deploys Uptime-Kuma only with an `EmptyDir` moun
 |`persistence.claimNameOverwrite`
 |`""`
 |Optional value to overwrite the PVC name, otherwise defaults to `fullname`.
+
+|`persistence.labels`
+|`{}`
+|Allows you to add labels that you want to the PVC resource.
 |===
 
 === Service Account
@@ -87,6 +91,10 @@ IMPORTANT: These values only apply and work on OKD or OpenShift or Clusters with
 |`route.enabled`
 |`false`
 |Specifies whether a OpenShift Rout should be created.
+
+|`route.labels`
+|`{}`
+|Allows you to add labels that you want to the route resource.
 
 |`route.annotations`
 |`{}`
@@ -193,6 +201,36 @@ CAUTION: Be sure you know what you are doing before making changes here.
 |`service.port`
 |`80`
 |The Port the service exposes with the named `http`.
+
+|`service.labels`
+|`{}`
+|Allows you to add labels that you want to the service resource.
+|===
+
+=== Statefulset
+
+|===
+|Value |Default |Description
+
+|`statefulSet.annotations`
+|`{}`
+|Allows you to add annotations that you want to the statefulSet resource.
+
+|`statefulSet.labels`
+|`{}`
+|Allows you to add labels that you want to the statefulSet resource.
+|===
+
+=== ServiceMonitor
+
+CAUTION: You need to deploy the chart first and create a token in the uptime-kuma interface before this works!
+
+|===
+|Value |Default |Description
+
+|`serviceMonitor.enabled`
+|`false`
+|Specifies whether a ServiceMonitor should get created for this Chart's deployment.
 |===
 
 
@@ -208,5 +246,9 @@ CAUTION: Be sure you know what you are doing before making changes here.
 |`nameOverride`
 |`""`
 |Allows you to overwrite the name property to a predefined value.
+
+|`commonLabels`
+|`{}`
+|Allows you to add labels that you want on every resource.
 |===
 

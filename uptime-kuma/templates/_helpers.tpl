@@ -37,6 +37,9 @@ Common labels
 {{- define "uptime-kuma.labels" -}}
 helm.sh/chart: {{ include "uptime-kuma.chart" . }}
 {{ include "uptime-kuma.selectorLabels" . }}
+{{- with .Values.commonLabels }}
+{{- toYaml . | nindent 0 }}
+{{- end }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -60,6 +63,13 @@ Create the name of the service account to use
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
+{{- end }}
+
+{{/*
+Create the name of the service monitor to use
+*/}}
+{{- define "uptime-kuma.serviceMonitorNamespace" -}}
+{{- default (include "uptime-kuma.fullname" .) .Values.namespace }}
 {{- end }}
 
 {{/*
