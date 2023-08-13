@@ -54,7 +54,6 @@ CAUTION: By default, this Chart deploys Uptime-Kuma only with an `EmptyDir` moun
 |`persistence.claimNameOverwrite`
 |`""`
 |Optional value to overwrite the PVC name, otherwise defaults to `fullname`.
-|===
 
 |`persistence.labels`
 |`{}`
@@ -96,7 +95,6 @@ IMPORTANT: These values only apply and work on OKD or OpenShift or Clusters with
 |`route.labels`
 |`{}`
 |Allows you to add labels that you want to the route resource.
-|===
 
 |`route.annotations`
 |`{}`
@@ -126,14 +124,14 @@ NOTE: Rout and Ingress are mutual exclusive to another, so be sure *not* to enab
 |`{}`
 |Annotations to add to the Ingress.
 
+|`ingress.hosts`
+|`[<sample-host-values>]`
+|The Ingress hosts array, the default value has been kept from the original `helm init`.
+
 |`ingress.tls`
 |`[]`
 |This value allows you to specify the TLS Certificate containing secret name and matching hosts.
 |===
-
-|`ingress.hosts`
-|`[<sample-host-values>]`
-|The Ingress hosts array, the default value has been kept from the original `helm init`.
 
 === Resources
 
@@ -203,7 +201,6 @@ CAUTION: Be sure you know what you are doing before making changes here.
 |`service.port`
 |`80`
 |The Port the service exposes with the named `http`.
-|===
 
 |`service.labels`
 |`{}`
@@ -218,7 +215,6 @@ CAUTION: Be sure you know what you are doing before making changes here.
 |`statefulSet.annotations`
 |`{}`
 |Allows you to add annotations that you want to the statefulSet resource.
-|===
 
 |`statefulSet.labels`
 |`{}`
@@ -235,6 +231,7 @@ CAUTION: You need to deploy the chart first and create a token in the uptime-kum
 |`serviceMonitor.enabled`
 |`false`
 |Specifies whether a ServiceMonitor should get created for this Chart's deployment.
+|===
 
 
 === General
@@ -249,7 +246,6 @@ CAUTION: You need to deploy the chart first and create a token in the uptime-kum
 |`nameOverride`
 |`""`
 |Allows you to overwrite the name property to a predefined value.
-|===
 
 |`commonLabels`
 |`{}`
