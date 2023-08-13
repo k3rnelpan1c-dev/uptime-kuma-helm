@@ -21,9 +21,17 @@ Make you you fill in the username and the password.
 The username should be the username you use to login.
 The password should be the token you just generated.
 If you do not use Authentication in Kuma you can skip this part.
+
 [source,yaml]
 ---
-include::./uptime-kuma/templates/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: uptime-kuma-credentials
+type: Opaque
+data:
+  username: <username>
+  password: <token>
 ---
 
 == Custom Image
