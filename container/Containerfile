@@ -16,9 +16,23 @@ COPY --from=app-donor /app /app
 RUN apt-get update -qqy \
     # Install Uptime-Kuma dependencies
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -qqy \
-        python3 python3-pip python3-cryptography python3-six python3-yaml python3-click python3-markdown python3-requests python3-requests-oauthlib \
-        sqlite3 iputils-ping util-linux dumb-init curl ca-certificates bash \
-    && pip3 --no-cache-dir install apprise==${APPRISE_VERSION} \
+        python3 \
+        python3-pip \
+        python3-cryptography \
+        python3-six \
+        python3-yaml \
+        python3-click \
+        python3-markdown \
+        python3-requests \
+        python3-requests-oauthlib \
+        sqlite3 \
+        iputils-ping \
+        util-linux \
+        dumb-init \
+        curl \
+        ca-certificates \
+        bash \
+    && pip --no-cache-dir install --break-system-packages apprise==${APPRISE_VERSION} \
     && rm -rf /var/lib/apt/lists/* \
     \
     # Download and install cloudflared
