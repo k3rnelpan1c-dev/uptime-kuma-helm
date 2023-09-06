@@ -25,7 +25,6 @@ RUN apt-get update -qqy \
         python3-markdown \
         python3-requests \
         python3-requests-oauthlib \
-        pipx \
         sqlite3 \
         iputils-ping \
         util-linux \
@@ -33,7 +32,7 @@ RUN apt-get update -qqy \
         curl \
         ca-certificates \
         bash \
-    && pipx install --pip-args '--no-cache-dir' apprise==${APPRISE_VERSION} \
+    && pip --no-cache-dir install --break-system-packages apprise==${APPRISE_VERSION} \
     && rm -rf /var/lib/apt/lists/* \
     \
     # Download and install cloudflared
