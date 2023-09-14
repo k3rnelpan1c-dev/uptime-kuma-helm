@@ -187,6 +187,20 @@
     },
     "affinity": {
       "type": "object"
+    },
+    "extraCertificates": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Specifies whether the default certificates should be extended with extra certificates."
+        },
+        "cacerts": {
+          "type": "string",
+          "description": "One or more certificates in PEM format."
+        }
+      }
     }
   },
   "definitions": {
