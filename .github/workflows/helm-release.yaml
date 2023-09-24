@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+        with:
+          fetch-depth: 0
 
       - name: Configure Git
         run: |-
@@ -19,6 +21,8 @@ jobs:
 
       - name: Ensure Helm is Installed
         uses: azure/setup-helm@v3.5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
