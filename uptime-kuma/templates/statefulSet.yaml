@@ -50,6 +50,10 @@ spec:
               value: '3001'
             - name: PORT
               value: '3001'
+            {{- if .Values.extraCertificates.enabled }}
+            - name: NODE_EXTRA_CA_CERTS
+              value: /usr/local/share/ca-certificates/cacerts.pem
+            {{- end }}
           ports:
             - name: http
               containerPort: 3001
@@ -57,6 +61,11 @@ spec:
           volumeMounts:
             - name: uptime-storage
               mountPath: /app/data
+            {{- if .Values.extraCertificates.enabled }}
+            - name: cacerts
+              mountPath: /usr/local/share/ca-certificates/cacerts.pem
+              subPath: cacerts.pem
+            {{- end }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
@@ -72,6 +81,14 @@ spec:
           emptyDir:
             sizeLimit: 4Gi
           {{- end }}
+        {{- if .Values.extraCertificates.enabled }}
+        - name: cacerts
+          configMap:
+            name: uptime-kuma-configmap
+            items:
+              - key: cacerts.pem
+                path: cacerts.pem
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -252,3 +252,18 @@ CAUTION: You need to deploy the chart first and create a token in the uptime-kum
 |Allows you to add labels that you want on every resource.
 |===
 
+
+=== Extra Certificates
+
+|===
+|Value |Default |Description
+
+|`extraCertificates.enabled`
+|`false`
+|Specifies whether the default certificates should be extended with extra certificates.
+
+|`extraCertificates.cacerts`
+|`""`
+|One or more certificates in PEM format.
+|===
+
