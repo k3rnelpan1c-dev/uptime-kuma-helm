@@ -265,3 +265,5 @@ CAUTION: You need to deploy the chart first and create a token in the uptime-kum
 |`extraCertificates.cacerts`
 |`""`
 |One or more certificates in PEM format.
+|===
+
