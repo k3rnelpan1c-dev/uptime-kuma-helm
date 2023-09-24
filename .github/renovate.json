@@ -67,7 +67,7 @@
     },
     {
       "description": "Update appVersion references in Chart.yaml",
-      "fileMatch": ["^uptime-kuma/Chart.yaml$"],
+      "fileMatch": ["^charts/uptime-kuma/Chart.yaml$"],
       "matchStrings": [
         "appVersion: \"(?<currentValue>.*?)\""
       ],
