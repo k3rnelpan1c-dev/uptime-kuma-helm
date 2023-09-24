@@ -9,6 +9,28 @@ This repo contains the automation to repackage link:https://github.com/louislam/
 
 The Helm Chart will deploy a single Pod as part of a `StatefulSet`, you can configure persistence and optionally deploy a OpenShift `Route` or regular K8s `Ingress` alongside.
 
+== Helm Repo
+
+[IMPORTANT]
+====
+As of version `1.3.0` of this repository/chart there is now a Helm Repository.
+====
+
+[source,bash]
+.Adding the Helm repository to your Helm
+----
+helm repo add k3 https://k3rnelpan1c-dev.github.io/uptime-kuma-helm/
+helm repo update
+----
+
+[source,bash]
+.Installing the Chart from the repo
+----
+helm install test-uptime k3/uptime-kuma
+# or a specific version
+helm install test-uptime k3/uptime-kuma --version 1.3.0
+----
+
 == Service Monitor
 
 To use the ServiceMonitor you can enable it by adding `serviceMonitor.enabled=true` to your values.yaml
@@ -16,14 +38,14 @@ To use the ServiceMonitor you can enable it by adding `serviceMonitor.enabled=tr
 === Usage
 
 To use this you will have to startup uptime-kuma, go to Settings -> API Keys -> Create a key and copy the token.
-Than add a secret to your namespace that looks like the source file below.
-Make you you fill in the username and the password.
+Then add a secret to your namespace that looks like the source file below.
+Make sure you fill in the username and the password.
 The username should be the username you use to login.
 The password should be the token you just generated.
 If you do not use Authentication in Kuma you can skip this part.
 
 [source,yaml]
----
+----
 apiVersion: v1
 kind: Secret
 metadata:
@@ -32,7 +54,7 @@ type: Opaque
 data:
   username: <username>
   password: <token>
----
+----
 
 == Custom Image
 
