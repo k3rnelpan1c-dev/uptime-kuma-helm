@@ -14,6 +14,5 @@ spec:
     - name: wget
       image: {{ .Values.testPod.image }}
       command: ["/bin/sh"]
-      args: ['{{ include "uptime-kuma.fullname" . }}:{{ .Values.service.port }}']
       args: ["-c", "cd tmp/ ; wget '{{ include "uptime-kuma.fullname" . }}:{{ .Values.service.port }}'"]
   restartPolicy: Never
