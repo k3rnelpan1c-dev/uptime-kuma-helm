@@ -7,10 +7,10 @@ metadata:
     {{- with .Values.statefulSet.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+  {{- with .Values.statefulSet.annotations }}
   annotations:
-    {{- with .Values.statefulSet.annotations }}
     {{- toYaml . | nindent 4 }}
-    {{- end }}
+  {{- end }}
 spec:
   replicas: 1
   serviceName: {{ template "uptime-kuma.fullname" . }}
