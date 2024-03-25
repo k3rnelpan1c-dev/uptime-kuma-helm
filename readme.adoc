@@ -59,7 +59,7 @@ data:
 == Custom Image
 
 The custom image within this repo is built with the intent to repackage _uptime-kuma_ in an OpenShift compatible way (i.e. to support and work properly with arbitrary UIDs), therefor the image is also a non-root image.
-It is used within this chat and its sources can be fund under the `container` folder within this repo or here:
+It is used within this chart and its sources can be fund under the `container` folder within this repo or here:
 
 [source,dockerfile]
 ----
