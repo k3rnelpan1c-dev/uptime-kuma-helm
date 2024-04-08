@@ -152,6 +152,9 @@
         "port": {
           "type": "integer",
           "default": 80
+        },
+        "loadBalancerIP": {
+          "type": "string"
         }
       }
     },

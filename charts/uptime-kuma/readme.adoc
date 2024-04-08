@@ -202,6 +202,10 @@ CAUTION: Be sure you know what you are doing before making changes here.
 |`80`
 |The Port the service exposes with the named `http`.
 
+|`service.loadBalancerIP`
+|`""`
+|Optional IP address the service uses to be exposed via the load balancer.
+
 |`service.labels`
 |`{}`
 |Allows you to add labels that you want to the service resource.
