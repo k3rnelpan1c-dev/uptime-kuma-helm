@@ -1,6 +1,6 @@
-FROM docker.io/louislam/uptime-kuma:1.23.11-debian@sha256:c326fd83d8da2d8fff3feb0e47433546139513bd823d9accc12977176b05b31f AS app-donor
+FROM docker.io/louislam/uptime-kuma:1.23.12-debian@sha256:bc6f244ecf277eeff6cc54262b724b693b386766c28fe78d7d5b9247d37907fd AS app-donor
 
-FROM docker.io/library/node:20.11.0-bookworm-slim@sha256:b54988ddece70caaeb64f8952212bbbb3026ed58e5308f421fbee60a90717a74
+FROM docker.io/library/node:20.12.2-bookworm-slim@sha256:9f938a1eeb3f85ca7691e1b4b5e9ab91e1d2efa7afc1d3e495b6f8158b7e2d39
 
 ARG UID=3310
 ARG GID=3310
