@@ -6,7 +6,7 @@ ARG UID=3310
 ARG GID=3310
 
 # renovate: datasource=pypi depName=apprise versioning=pep440
-ARG APPRISE_VERSION=1.7.6
+ARG APPRISE_VERSION=1.8.0
 
 # renovate: datasource=github-releases depName=cloudflare/cloudflared
 ARG CLOUDFLARED_VERSION=2024.5.0
