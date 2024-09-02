@@ -73,7 +73,8 @@
       ],
       "depNameTemplate": "louislam/uptime-kuma",
       "datasourceTemplate": "docker",
-      "versioningTemplate": "docker"
+      "versioningTemplate": "docker",
+      "pinDigests": false
     }
   ]
 }
