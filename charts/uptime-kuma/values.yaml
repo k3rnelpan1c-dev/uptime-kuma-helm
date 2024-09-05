@@ -108,7 +108,7 @@ serviceMonitor:
   enabled: false
 
 testPod:
-  image: docker.io/busybox@sha256:5eef5ed34e1e1ff0a4ae850395cbf665c4de6b4b83a32a0bc7bcb998e24e7bbb
+  image: docker.io/busybox@sha256:34b191d63fbc93e25e275bfccf1b5365664e5ac28f06d974e8d50090fbb49f41
   annotations: {}
 
 extraCertificates:
