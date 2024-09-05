@@ -33,7 +33,7 @@ RUN apt-get update -qqy \
         ca-certificates \
         bash \
     && pip --no-cache-dir install --break-system-packages apprise==${APPRISE_VERSION} \
-    && setcap -r /usr/ping \
+    && setcap -r /usr/bin/ping \
     && rm -rf /var/lib/apt/lists/* \
     \
     # Download and install cloudflared
