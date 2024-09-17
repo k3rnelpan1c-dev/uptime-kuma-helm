@@ -1,4 +1,4 @@
-{{- if .Values.extraCertificates.enabled }}
+{{- if and .Values.extraCertificates.enabled (not .Values.extraCertificates.existingConfigMap) }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
