@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   cleanupGhcr:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Delete old unused container images
         uses: snok/container-retention-policy@b56f4ff7539c1f94f01e5dc726671cd619aa8072 # v2.2.1
