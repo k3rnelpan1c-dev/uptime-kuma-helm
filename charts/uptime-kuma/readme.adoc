@@ -235,6 +235,30 @@ CAUTION: You need to deploy the chart first and create a token in the uptime-kum
 |`serviceMonitor.enabled`
 |`false`
 |Specifies whether a ServiceMonitor should get created for this Chart's deployment.
+
+|`serviceMonitor.authentication.enabled`
+|`true`
+|Specifies whether the ServiceMonitor needs authentication information for the metrics endpoint.
+
+|`serviceMonitor.authentication.username`
+|`<username>`
+|The username used to authenticate to the metrics endpoint.
+
+|`serviceMonitor.authentication.password`
+|`<token>`
+|The password used to authenticate to the metrics endpoint.
+
+|`serviceMonitor.authentication.existingSecret`
+|`""`
+|An existing secret containing credentials to authenticate to the metrics endpoint.
+
+|`serviceMonitor.authentication.existingSecretUsernameKey`
+|`username`
+|The key in the existing secret, that contains the username to authenticate to the metrics endpoint.
+
+|`serviceMonitor.authentication.existingSecretPasswordKey`
+|`password`
+|The key in the existing secret, that contains the password to authenticate to the metrics endpoint.
 |===
 
 

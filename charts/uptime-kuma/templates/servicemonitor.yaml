@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "uptime-kuma.fullname" . }}  
+  name: {{ include "uptime-kuma.fullname" . }}
   labels:
     {{- include "uptime-kuma.labels" . | nindent 4 }}
 spec:
@@ -10,13 +10,24 @@ spec:
   - interval: 30s
     path: /metrics
     port: http
+    {{- if .Values.serviceMonitor.authentication.enabled }}
     basicAuth:
+      {{- if .Values.serviceMonitor.authentication.existingSecret }}
+      password:
+        name: {{ .Values.serviceMonitor.authentication.existingSecret }}
+        key: {{ .Values.serviceMonitor.authentication.existingSecretPasswordKey | default "password" }}
+      username:
+        name: {{ .Values.serviceMonitor.authentication.existingSecret }}
+        key: {{ .Values.serviceMonitor.authentication.existingSecretUsernameKey | default "username" }}
+      {{- else }}
       password:
         name: uptime-kuma-credentials
         key: password
       username:
         name: uptime-kuma-credentials
         key: username
+      {{- end }}
+    {{- end }}
   namespaceSelector: # Scrape metrics from...
     matchNames:
     - {{ include "uptime-kuma.serviceMonitorNamespace" . }}
