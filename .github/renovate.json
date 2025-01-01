@@ -47,6 +47,11 @@
         "node"
       ],
       "major": false
+    },
+    {
+      "description": "Disable pinDigests for Chart.yaml.",
+      "matchFileNames": ["charts/uptime-kuma/Chart.yaml"],
+      "pinDigests": false
     }
   ],
   "dockerfile": {

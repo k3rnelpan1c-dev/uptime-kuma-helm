@@ -83,11 +83,19 @@ spec:
           {{- end }}
         {{- if .Values.extraCertificates.enabled }}
         - name: cacerts
+          {{- if .Values.extraCertificates.existingConfigMap }}
+          configMap:
+            name: {{ .Values.extraCertificates.existingConfigMap }}
+            items:
+              - key: {{ .Values.extraCertificates.existingConfigMapKey }}
+                path: cacerts.pem
+          {{- else }}
           configMap:
             name: uptime-kuma-configmap
             items:
               - key: cacerts.pem
                 path: cacerts.pem
+          {{- end }}
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
