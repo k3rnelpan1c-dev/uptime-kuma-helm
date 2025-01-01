@@ -114,3 +114,5 @@ testPod:
 extraCertificates:
   enabled: false
   cacerts: ""
+  existingConfigMap: ""
+  existingConfigMapKey: cacerts.pem

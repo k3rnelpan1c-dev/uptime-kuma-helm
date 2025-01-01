@@ -269,5 +269,12 @@ CAUTION: You need to deploy the chart first and create a token in the uptime-kum
 |`extraCertificates.cacerts`
 |`""`
 |One or more certificates in PEM format.
-|===
 
+|`extraCertificates.existingConfigMap`
+|`{}`
+|The name of an existing ConfigMap, that contains one or more extra certificates in PEM format.
+
+|`extraCertificates.existingConfigMapKey`
+|`cacerts.pem`
+|The key of the existing ConfigMap, that contains the extra certificate(s) in PEM format.
+|===
