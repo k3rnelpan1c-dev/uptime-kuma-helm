@@ -115,7 +115,7 @@ serviceMonitor:
     existingSecretPasswordKey: token
 
 testPod:
-  image: docker.io/busybox@sha256:34b191d63fbc93e25e275bfccf1b5365664e5ac28f06d974e8d50090fbb49f41
+  image: docker.io/busybox@sha256:2919d0172f7524b2d8df9e50066a682669e6d170ac0f6a49676d54358fe970b5
   annotations: {}
 
 extraCertificates:

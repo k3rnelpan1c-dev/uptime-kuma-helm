@@ -2,8 +2,17 @@
 = Uptime Kuma Helm Chart
 
 image:https://github.com/k3rnelpan1c-dev/uptime-kuma-helm/actions/workflows/container-build.yaml/badge.svg[🏗️ Container Image Build, link="https://github.com/k3rnelpan1c-dev/uptime-kuma-helm/actions/workflows/container-build.yaml"]
-image:https://img.shields.io/maintenance/yes/2025[Maintenance]
+image:https://img.shields.io/maintenance/yes/2024[Maintenance]
 image:https://img.shields.io/github/license/k3rnelpan1c-dev/uptime-kuma-helm[GitHub]
+
+[IMPORTANT]
+====
+Due to IRL stress, limited time and lack of current validation/test environment, I must, with a heavy heart, pause maintenance of this repo.
+I sincerely apologize to everyone who was waiting on updates for the past half year, who has likely seen this coming.
+
+What does that mean, exactly? I will try and update the rootless image as time permits and keep up with any feature PRs contributed, but I cannot with a straight face call this JIT/active maintenance, nor will I be migrating to uptime-kuma 2.y.z anytime soon.
+Thank you everyone who has helped out and who is interested in this project, I hope to return as I find more time this year for OSS (I am planing to do a better job scheduling).
+====
 
 This repo contains the automation to repackage link:https://github.com/louislam/uptime-kuma[uptime-kuma] into a non-root OCI container image as well as a simple Helm 3 Chart to deploy on OpenShift, but also on Kubernetes.
 
