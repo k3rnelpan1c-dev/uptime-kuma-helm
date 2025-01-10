@@ -54,6 +54,16 @@ spec:
             - name: NODE_EXTRA_CA_CERTS
               value: /usr/local/share/ca-certificates/cacerts.pem
             {{- end }}
+          {{- if .Values.externalDatabase.enabled }}
+          envFrom:
+            - secretRef:
+                name: uptime-kuma-env-credentials
+          {{- end }}
+          {{- if .Values.extraCertificates.enabled }}
+          env:
+            - name: NODE_EXTRA_CA_CERTS
+              value: /usr/local/share/ca-certificates/cacerts.pem
+          {{- end }}
           ports:
             - name: http
               containerPort: 3001
@@ -72,6 +82,13 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.dnsConfig.enabled }}
+      dnsConfig:
+        {{- with .Values.dnsConfig.options }}
+        options:
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
+      {{- end }}
       volumes:
         - name: uptime-storage
           {{- if .Values.persistence.enabled }}
@@ -79,7 +96,7 @@ spec:
             claimName: {{ include "uptime-kuma.persistentVolumeClaimName" . }}
           {{- else }}
           emptyDir:
-            sizeLimit: 4Gi
+            sizeLimit: 1Gi
           {{- end }}
         {{- if .Values.extraCertificates.enabled }}
         - name: cacerts
