@@ -223,6 +223,10 @@ CAUTION: Be sure you know what you are doing before making changes here.
 |`statefulSet.labels`
 |`{}`
 |Allows you to add labels that you want to the statefulSet resource.
+
+|`statefulSet.envVars`
+|`[]`
+|Allows you to add envs that you want to the statefulSet resource.
 |===
 
 === ServiceMonitor
