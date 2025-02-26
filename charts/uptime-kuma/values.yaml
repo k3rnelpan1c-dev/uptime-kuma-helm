@@ -18,7 +18,34 @@ commonLabels: {}
 statefulSet:
   labels: {}
   annotations: {}
+  # statefulSet.envVars you can add some app env here.
+  # more env vars see: https://github.com/louislam/uptime-kuma/wiki/Environment-Variables
+  envVars: []
+  # Example for using Mariadb (needs version 2.0.0+): 
+  # ################################################
+  # envVars:
+  #   - name: UPTIME_KUMA_ENABLE_EMBEDDED_MARIADB
+  #     value: "1"
+  #   - name: UPTIME_KUMA_DB_TYPE
+  #     value: "mariadb"
+  #   - name: UPTIME_KUMA_DB_HOSTNAME
+  #     value: "127.0.0.1"
+  #   - name: UPTIME_KUMA_DB_PORT
+  #     value: "3306"
+  #   - name: UPTIME_KUMA_DB_NAME
+  #     value: "uptime-kuma"
+  #   - name: UPTIME_KUMA_DB_USERNAME
+  #     value: "username"
+  #   - name: UPTIME_KUMA_DB_PASSWORD
+  #     value: "p@ssw0rd"
 
+  # Example for Change UID & GID:
+  # ############################
+  # envVars:
+  #   - name: "PUID"
+  #     value: "1001"
+  #   - name: "PGID"
+  #     value: "1002"
 serviceAccount:
   # Specifies whether a service account should be created
   create: true

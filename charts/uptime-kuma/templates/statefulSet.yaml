@@ -54,6 +54,9 @@ spec:
             - name: NODE_EXTRA_CA_CERTS
               value: /usr/local/share/ca-certificates/cacerts.pem
             {{- end }}
+            {{- if .Values.statefulSet.envVars }}
+            {{- toYaml .Values.statefulSet.envVars | nindent 12 }}
+            {{- end }}
           ports:
             - name: http
               containerPort: 3001
