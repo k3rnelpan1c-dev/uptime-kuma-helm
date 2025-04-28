@@ -7,7 +7,7 @@ image:
   repository: "k3rnel-pan1c/uptime-kuma"
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the Chart's appVersion.
-  tag: "@sha256:855631450f86963fbaa5f67fd47a6642fdd29c5452faed5b8054852b79ac09a5"
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
